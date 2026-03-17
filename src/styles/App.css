@@ -69,13 +69,14 @@ body {
   width: var(--sidebar-width);
   background-color: var(--color-sidebar-bg);
   border-right: 1px solid var(--color-border);
-  padding: 20px 0;
+  padding: 16px 0;
   display: flex;
   flex-direction: column;
-  position: fixed;
   height: calc(100vh - var(--top-bar-height));
+  position: sticky;
   top: var(--top-bar-height);
   z-index: 900;
+  flex-shrink: 0;
 }
 
 .nav-item {
@@ -114,10 +115,10 @@ body {
 
 /* MAIN CONTENT */
 .main-content {
-  margin-left: var(--sidebar-width);
   flex: 1;
-  padding: 20px 24px;
+  padding: 24px;
   animation: fadeIn 0.4s ease-out;
+  min-width: 0; /* Prevent flex overflow */
 }
 
 @keyframes fadeIn {
