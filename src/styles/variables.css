@@ -1,0 +1,32 @@
+:root {
+  /* Shopify-inspired Base Colors */
+  --color-primary-bg: #f6f6f7;
+  --color-sidebar-bg: #f1f1f1;
+  --color-top-bar: #1a1a1a;
+  --color-white: #ffffff;
+  --color-border: #e1e3e5;
+  
+  /* Text Colors */
+  --color-text-primary: #202223;
+  --color-text-secondary: #6d7175;
+  
+  /* Action Colors */
+  --color-primary-btn: #008060;
+  --color-primary-btn-hover: #006e52;
+  
+  /* Status Colors (Solid) */
+  --color-status-success-bg: #aee9d1;
+  --color-status-success-text: #008060;
+
+  /* Live Cricket Colors (Solid Energetic) */
+  --color-live-red: #ff3b30;
+  --color-cricket-green: #00a86b;
+  --color-upcoming-blue: #007aff;
+  --color-stadium-gray: #f2f2f7;
+  --color-pitch-black: #111111;
+  
+  /* Shared dimensions */
+  --top-bar-height: 56px;
+  --sidebar-width: 240px;
+  --border-radius-card: 16px;
+}
