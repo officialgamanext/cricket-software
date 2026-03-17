@@ -81,9 +81,9 @@ body {
 .nav-item {
   display: flex;
   align-items: center;
-  padding: 12px 16px;
-  margin: 4px 16px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 2px 12px;
+  border-radius: 8px;
   color: var(--color-text-primary);
   text-decoration: none;
   font-size: 14px;
@@ -116,7 +116,7 @@ body {
 .main-content {
   margin-left: var(--sidebar-width);
   flex: 1;
-  padding: 32px;
+  padding: 20px 24px;
   animation: fadeIn 0.4s ease-out;
 }
 
@@ -164,22 +164,22 @@ body {
   background-color: var(--color-cricket-green);
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 800;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 4px 0 #008f5d;
+  box-shadow: 0 3px 0 #008f5d;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .shopify-btn-primary:hover {
   filter: brightness(1.1);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 #008f5d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 #008f5d;
 }
 
 .shopify-btn-primary:active {
@@ -190,9 +190,9 @@ body {
 .shopify-btn-secondary {
   background-color: var(--color-white);
   color: var(--color-text-primary);
-  border: 2px solid var(--color-border);
-  padding: 12px 24px;
-  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  padding: 8px 16px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 800;
   cursor: pointer;
@@ -282,9 +282,9 @@ body {
 }
 
 .shopify-table th {
-  padding: 16px 20px;
+  padding: 12px 16px;
   background: #fafbfc;
-  font-size: 12px;
+  font-size: 11px;
   color: #8c9196;
   font-weight: 700;
   text-transform: uppercase;
@@ -293,7 +293,7 @@ body {
 }
 
 .shopify-table td {
-  padding: 20px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--color-border);
   font-size: 14px;
   font-weight: 500;
@@ -322,9 +322,9 @@ body {
 
 .modal-content {
   background: white;
-  border-radius: 28px;
+  border-radius: 20px;
   width: 95%;
-  max-width: 600px;
+  max-width: 550px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
@@ -342,7 +342,7 @@ body {
 }
 
 .modal-header {
-  padding: 24px 32px;
+  padding: 16px 24px;
   background: #fafafa;
   border-bottom: 1px solid #efefef;
   display: flex;
@@ -357,9 +357,9 @@ body {
 }
 
 .modal-body-scroll {
-  padding: 32px;
+  padding: 20px 24px;
   overflow-y: auto;
-  max-height: calc(92vh - 160px);
+  max-height: calc(92vh - 120px);
 }
 
 .modal-footer {
@@ -374,10 +374,10 @@ body {
 /* FORM ELEMENTS */
 .form-input {
   width: 100%;
-  padding: 14px 18px;
-  border: 2px solid #eef0f2;
-  border-radius: 16px;
-  font-size: 15px;
+  padding: 10px 14px;
+  border: 1.5px solid #eef0f2;
+  border-radius: 10px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.2s;
   background: white;
@@ -402,13 +402,13 @@ body {
 .player-row {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 50px;
-  gap: 16px;
+  gap: 12px;
   align-items: center;
-  padding: 16px 20px;
+  padding: 10px 16px;
   background: #f9fafb;
-  border-radius: 16px;
-  margin-bottom: 12px;
-  border: 2px solid transparent;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  border: 1.5px solid transparent;
   transition: all 0.2s;
 }
 

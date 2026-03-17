@@ -8,7 +8,8 @@ import {
   Calendar,
   Clock,
   ExternalLink,
-  History
+  History,
+  Target
 } from 'lucide-react';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { db } from '../../firebase/config';
@@ -44,8 +45,8 @@ const Matches = () => {
           <h1 className="page-title">Global Match Feed</h1>
           <p style={{ color: 'var(--color-text-secondary)', marginTop: '4px' }}>Real-time updates from all active leagues.</p>
         </div>
-        <button className="shopify-btn-primary" onClick={() => navigate('/tournaments')}>
-          <Play size={18} fill="white" /> New Match
+        <button className="shopify-btn-primary" onClick={() => navigate('/tournaments')} style={{ background: 'var(--color-pitch-black)', boxShadow: '0 4px 0 #000' }}>
+          <Play size={18} fill="white" /> Schedule New Match
         </button>
       </div>
 
@@ -56,7 +57,7 @@ const Matches = () => {
             className={`tab-item ${activeTab === tab ? 'active' : ''}`}
             onClick={() => setActiveTab(tab)}
           >
-            {tab}
+            {tab.toUpperCase()}
           </div>
         ))}
       </div>
@@ -74,62 +75,62 @@ const Matches = () => {
           matches.map(m => (
             <div 
               key={m.id} 
-              className={`shopify-card card-interactive`} 
+              className="shopify-card card-interactive" 
               style={{ 
-                padding: '28px', 
+                padding: '0', 
                 marginBottom: 0,
-                borderLeft: m.status === 'Live' ? '8px solid var(--color-live-red)' : '1px solid var(--color-border)'
+                cursor: 'pointer',
+                borderLeft: m.status === 'Live' ? '12px solid var(--color-live-red)' : '1px solid var(--color-border)'
               }}
               onClick={() => navigate(`/matches/${m.id}`)}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{ flex: 1 }}>
-                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-                      <span className={`status-badge ${getStatusStyle(m.status)}`}>
-                        {m.status === 'Live' && <div className="live-dot" />}
-                        {m.status}
-                      </span>
-                      <span style={{ fontSize: '12px', fontWeight: 800, color: '#999' }}>ID: {m.id.substring(0,8).toUpperCase()}</span>
-                   </div>
-                   
-                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '20px' }}>
-                      <div style={{ textAlign: 'center', flex: 1 }}>
-                         <div style={{ width: '50px', height: '50px', background: '#333', borderRadius: '16px', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '18px', margin: '0 auto 12px' }}>
-                            {m.teamAName?.charAt(0)}
-                         </div>
-                         <div style={{ fontWeight: 900, fontSize: '18px' }}>{m.teamAName}</div>
-                      </div>
-
-                      <div style={{ padding: '0 40px', textAlign: 'center' }}>
-                         <div style={{ fontSize: '24px', fontWeight: 900, letterSpacing: '2px' }}>
-                            {m.runsA}/{m.wicketsA} <span style={{ color: 'var(--color-live-red)' }}>VS</span> {m.runsB}/{m.wicketsB}
-                         </div>
-                         <div style={{ fontSize: '12px', color: '#999', marginTop: '4px', fontWeight: 800 }}>
-                            {m.oversA} OVERS • {m.oversB} OVERS
-                         </div>
-                      </div>
-
-                      <div style={{ textAlign: 'center', flex: 1 }}>
-                         <div style={{ width: '50px', height: '50px', background: 'var(--color-cricket-green)', borderRadius: '16px', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '18px', margin: '0 auto 12px' }}>
-                            {m.teamBName?.charAt(0)}
-                         </div>
-                         <div style={{ fontWeight: 900, fontSize: '18px' }}>{m.teamBName}</div>
-                      </div>
-                   </div>
+              <div style={{ display: 'flex', alignItems: 'stretch' }}>
+                {/* Status Column */}
+                <div style={{ padding: '24px', background: '#fafafa', borderRight: '1.5px solid #f0f0f0', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minWidth: '130px' }}>
+                   <span className={`status-badge ${getStatusStyle(m.status)}`} style={{ marginBottom: '12px' }}>
+                      {m.status === 'Live' && <div className="live-dot" />}
+                      {m.status}
+                   </span>
+                   <div style={{ fontSize: '11px', fontWeight: 900, color: '#bbb' }}>ID: {m.id.substring(0,6).toUpperCase()}</div>
                 </div>
 
-                <div style={{ width: '1px', height: '80px', background: '#f0f0f0', margin: '0 40px' }} />
+                {/* Main Scoreboard Area */}
+                <div style={{ flex: 1, padding: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                   <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: 1 }}>
+                      <div style={{ textAlign: 'right', flex: 1 }}>
+                        <div style={{ fontWeight: 900, fontSize: '18px' }}>{m.teamAName}</div>
+                        <div style={{ fontSize: '24px', fontWeight: 900, color: 'var(--color-cricket-green)', marginTop: '4px' }}>
+                          {m.runsA}/{m.wicketsA} <small style={{ fontSize: '12px', color: '#999' }}>({m.oversA})</small>
+                        </div>
+                      </div>
+                      
+                      <div style={{ background: '#f4f4f4', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, color: '#999', fontSize: '12px' }}>
+                         VS
+                      </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-end', minWidth: '150px' }}>
-                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', fontWeight: 700, color: '#666' }}>
-                      <Calendar size={14} /> {m.date}
+                      <div style={{ textAlign: 'left', flex: 1 }}>
+                        <div style={{ fontWeight: 900, fontSize: '18px' }}>{m.teamBName}</div>
+                        <div style={{ fontSize: '24px', fontWeight: 900, color: 'var(--color-cricket-green)', marginTop: '4px' }}>
+                          {m.runsB}/{m.wicketsB} <small style={{ fontSize: '12px', color: '#999' }}>({m.oversB})</small>
+                        </div>
+                      </div>
                    </div>
-                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', fontWeight: 700, color: '#666' }}>
-                      <Clock size={14} /> {m.time}
+
+                   <div style={{ width: '1.5px', height: '60px', background: '#f0f0f0', margin: '0 40px' }} />
+
+                   <div style={{ textAlign: 'right', minWidth: '150px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'flex-end', fontSize: '13px', fontWeight: 800, color: '#666' }}>
+                         <Calendar size={14} /> {m.date}
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'flex-end', fontSize: '13px', fontWeight: 800, color: '#666', marginTop: '4px' }}>
+                         <Clock size={14} /> {m.time || '18:00'}
+                      </div>
+                      <div style={{ marginTop: '12px' }}>
+                         <button className="shopify-btn-secondary" style={{ padding: '6px 12px', fontSize: '11px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            View Details <ChevronRight size={14} />
+                         </button>
+                      </div>
                    </div>
-                   <button className="shopify-btn-secondary" style={{ padding: '8px 16px', marginTop: '8px', fontSize: '12px' }}>
-                      View Match Center
-                   </button>
                 </div>
               </div>
             </div>
