@@ -46,41 +46,41 @@ const Scoring = () => {
             <span className="status-badge status-live">Live</span> 
             {match.teamAName} vs {match.teamBName}
           </h1>
-          <div style={{ display: 'flex', gap: '16px', marginTop: '8px', color: '#666', fontSize: '13px', fontWeight: 700 }}>
-             <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Wifi size={14} color="var(--color-cricket-green)" /> LIVE SYNC ACTIVE</span>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px', marginTop: '8px', color: '#666', fontSize: '12px', fontWeight: 700 }}>
+             <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Wifi size={14} color="var(--color-cricket-green)" /> LIVE SYNC</span>
              <span>SERIES: LOCAL SEASON 2026</span>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '12px' }}>
-          <button className="shopify-btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-             <RotateCcw size={16} /> Undo
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button className="shopify-btn-secondary" style={{ padding: '8px 12px' }}>
+             <RotateCcw size={15} /> <span className="hide-mobile">Undo</span>
           </button>
-          <button className="shopify-btn-primary" style={{ background: 'var(--color-pitch-black)', boxShadow: '0 4px 0 #000' }}>
-             <CheckCircle size={16} /> Finish Match
+          <button className="shopify-btn-primary" style={{ background: 'var(--color-pitch-black)', boxShadow: '0 4px 0 #000', padding: '8px 12px' }}>
+             <CheckCircle size={15} /> <span className="hide-mobile">Finish</span>
           </button>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '32px' }}>
+      <div className="responsive-split">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           
           {/* MAIN SCOREBOARD */}
           <div className="shopify-card" style={{ padding: '0', background: 'var(--color-pitch-black)', color: 'white' }}>
-             <div style={{ padding: '40px', textAlign: 'center', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: '20px', left: '20px' }}>
-                   <div style={{ fontSize: '12px', fontWeight: 900, color: 'rgba(255,255,255,0.4)', letterSpacing: '2px' }}>CURRENT INNINGS</div>
-                   <div style={{ fontSize: '18px', fontWeight: 900, color: 'var(--color-cricket-green)' }}>{match.teamAName?.toUpperCase()}</div>
+             <div style={{ padding: '32px 20px', textAlign: 'center', position: 'relative' }}>
+                <div style={{ marginBottom: '20px' }}>
+                   <div style={{ fontSize: '11px', fontWeight: 900, color: 'rgba(255,255,255,0.4)', letterSpacing: '2px' }}>CURRENT INNINGS</div>
+                   <div style={{ fontSize: '16px', fontWeight: 900, color: 'var(--color-cricket-green)' }}>{match.teamAName?.toUpperCase()}</div>
                 </div>
 
-                <div style={{ fontSize: '120px', fontWeight: 900, lineHeight: 1, letterSpacing: '-5px' }}>
+                <div style={{ fontSize: '15vw', fontWeight: 900, lineHeight: 1, letterSpacing: '-5px', maxWidth: '300px', margin: '0 auto' }}>
                   {match.runsA}<span style={{ color: 'var(--color-live-red)' }}>/</span>{match.wicketsA}
                 </div>
-                <div style={{ fontSize: '24px', fontWeight: 800, marginTop: '12px', color: 'rgba(255,255,255,0.6)' }}>
-                  OVERS: {match.oversA} <span style={{ margin: '0 12px', opacity: 0.3 }}>|</span> CRR: {(match.runsA / (match.oversA || 1)).toFixed(2)}
+                <div style={{ fontSize: '18px', fontWeight: 800, marginTop: '16px', color: 'rgba(255,255,255,0.6)' }}>
+                  OVERS: {match.oversA} <span style={{ margin: '0 10px', opacity: 0.3 }}>|</span> CRR: {(match.runsA / (match.oversA || 1)).toFixed(2)}
                 </div>
              </div>
 
-             <div style={{ background: 'rgba(255,255,255,0.05)', padding: '24px 40px', display: 'flex', justifyContent: 'center', gap: '80px' }}>
+             <div style={{ background: 'rgba(255,255,255,0.05)', padding: '20px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px 40px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                    <div style={{ width: '48px', height: '48px', background: 'var(--color-cricket-green)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>*</div>
                    <div>
@@ -101,25 +101,25 @@ const Scoring = () => {
           {/* SCORING PAD */}
           <div className="shopify-card" style={{ padding: '32px' }}>
              <h3 style={{ fontSize: '14px', fontWeight: 900, color: '#999', marginBottom: '24px', letterSpacing: '1px' }}>SCORING PAD</h3>
-             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '16px' }}>
+             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))', gap: '12px' }}>
                 {[0, 1, 2, 3, 4, 6].map(run => (
                    <button 
                      key={run} 
                      className="shopify-btn-secondary" 
-                     style={{ height: '80px', fontSize: '24px', fontWeight: 900, borderRadius: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '4px' }}
+                     style={{ height: '70px', fontSize: '20px', fontWeight: 900, borderRadius: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'center', minWidth: '70px' }}
                    >
                      {run}
-                     <span style={{ fontSize: '10px', opacity: 0.5 }}>RUNS</span>
+                     <span style={{ fontSize: '9px', opacity: 0.5 }}>RUNS</span>
                    </button>
                 ))}
                 
-                <button className="shopify-btn-primary" style={{ height: '80px', gridColumn: 'span 2', borderRadius: '20px', background: 'var(--color-live-red)', boxShadow: '0 6px 0 #b00' }}>
-                   <Zap size={20} /> WICKET
+                <button className="shopify-btn-primary" style={{ height: '70px', gridColumn: 'span 2', borderRadius: '16px', background: 'var(--color-live-red)', boxShadow: '0 6px 0 #b00' }}>
+                   <Zap size={18} /> WICKET
                 </button>
-                <button className="shopify-btn-secondary" style={{ height: '80px', gridColumn: 'span 2', borderRadius: '20px', borderColor: 'var(--color-cricket-green)', color: 'var(--color-cricket-green)' }}>
+                <button className="shopify-btn-secondary" style={{ height: '70px', gridColumn: 'span 2', borderRadius: '16px', borderColor: 'var(--color-cricket-green)', color: 'var(--color-cricket-green)', fontSize: '12px' }}>
                    EXTRAS / NB / WD
                 </button>
-                <button className="shopify-btn-secondary" style={{ height: '80px', gridColumn: 'span 2', borderRadius: '20px' }}>
+                <button className="shopify-btn-secondary" style={{ height: '70px', gridColumn: 'span 2', borderRadius: '16px', fontSize: '12px' }}>
                    OVER COMPLETE
                 </button>
              </div>

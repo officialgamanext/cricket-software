@@ -131,22 +131,22 @@ const TournamentDetails = () => {
   return (
     <div className="main-content">
       <div className="page-header" style={{ alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          <div style={{ width: '80px', height: '80px', background: 'var(--color-cricket-green)', borderRadius: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 20px rgba(0,168,107,0.3)' }}>
+        <div className="header-flex">
+          <div style={{ width: '80px', height: '80px', background: 'var(--color-cricket-green)', borderRadius: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 20px rgba(0,168,107,0.3)', flexShrink: 0 }}>
             <Trophy size={40} color="white" />
           </div>
-          <div>
-             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <h1 className="page-title" style={{ fontSize: '32px' }}>{tournament.name}</h1>
+          <div style={{ minWidth: 0 }}>
+             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                <h1 className="page-title" style={{ fontSize: '28px', margin: 0 }}>{tournament.name}</h1>
                 <span className="status-badge status-active">{tournament.status}</span>
              </div>
-             <div style={{ display: 'flex', gap: '16px', marginTop: '8px', color: '#666', fontSize: '13px', fontWeight: 700 }}>
+             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px', marginTop: '8px', color: '#666', fontSize: '13px', fontWeight: 700 }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><MapPin size={14} /> MAIN CIRCUIT</span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Clock size={14} /> STARTED FEB 2026</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Clock size={14} /> FEB 2026</span>
              </div>
           </div>
         </div>
-        <button className="shopify-btn-secondary" onClick={() => navigate('/tournaments')}><ArrowLeft size={18} /> Back</button>
+        <button className="shopify-btn-secondary" onClick={() => navigate('/tournaments')}><ArrowLeft size={18} /> <span className="hide-mobile">Back</span></button>
       </div>
 
       <div className="tab-scroller" style={{ marginBottom: '32px' }}>
@@ -157,7 +157,7 @@ const TournamentDetails = () => {
         ))}
       </div>
 
-      <div className="shopify-card" style={{ padding: '40px', border: 'none', background: 'white' }}>
+      <div className="shopify-card" style={{ padding: 'min(40px, 5vw)', border: 'none', background: 'white' }}>
         {/* MATCHES */}
         {activeTab === 'Matches' && (
           <div>
@@ -167,28 +167,28 @@ const TournamentDetails = () => {
                  <button className="shopify-btn-secondary" style={{ padding: '8px' }}><Settings size={18} /></button>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(450px, 1fr))', gap: '24px' }}>
+            <div className="card-grid">
               {matches.map(m => (
                 <div key={m.id} className="shopify-card card-interactive" style={{ padding: '0', marginBottom: 0 }} onClick={() => navigate(`/matches/${m.id}`)}>
-                   <div style={{ padding: '24px', background: m.status === 'Live' ? 'var(--color-live-red)' : '#f8f9fa', color: m.status === 'Live' ? 'white' : 'inherit' }}>
+                   <div style={{ padding: '16px 20px', background: m.status === 'Live' ? 'var(--color-live-red)' : '#f8f9fa', color: m.status === 'Live' ? 'white' : 'inherit' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                         <span style={{ fontSize: '11px', fontWeight: 900, opacity: 0.8 }}>MATCH ID: {m.id.substring(0,8).toUpperCase()}</span>
-                         <span className={`status-badge ${m.status === 'Live' ? 'status-live' : ''}`} style={{ border: 'none' }}>
+                         <span style={{ fontSize: '10px', fontWeight: 900, opacity: 0.8 }}>ID: {m.id.substring(0,8).toUpperCase()}</span>
+                         <span className={`status-badge ${m.status === 'Live' ? 'status-live' : ''}`} style={{ border: 'none', padding: '4px 10px', fontSize: '10px' }}>
                             {m.status === 'Live' && <div className="live-dot" />} {m.status}
                          </span>
                       </div>
                    </div>
-                   <div style={{ padding: '32px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                   <div style={{ padding: '24px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
                          <div style={{ textAlign: 'center', flex: 1 }}>
-                            <div style={{ fontSize: '20px', fontWeight: 900 }}>{m.teamAName}</div>
-                            <div style={{ fontSize: '28px', fontWeight: 900, marginTop: '8px', color: 'var(--color-cricket-green)' }}>{m.runsA}/{m.wicketsA}</div>
-                            <div style={{ fontSize: '12px', fontWeight: 700, color: '#999' }}>{m.oversA} OVERS</div>
+                            <div style={{ fontSize: '16px', fontWeight: 900 }}>{m.teamAName}</div>
+                            <div style={{ fontSize: '24px', fontWeight: 900, marginTop: '4px', color: 'var(--color-cricket-green)' }}>{m.runsA}/{m.wicketsA}</div>
+                            <div style={{ fontSize: '11px', fontWeight: 700, color: '#999' }}>{m.oversA} OVERS</div>
                          </div>
-                         <div style={{ padding: '0 20px', fontSize: '14px', fontWeight: 900, color: '#ddd' }}>VS</div>
+                         <div style={{ padding: '0 8px', fontSize: '12px', fontWeight: 900, color: '#ddd' }}>VS</div>
                          <div style={{ textAlign: 'center', flex: 1 }}>
-                            <div style={{ fontSize: '20px', fontWeight: 900 }}>{m.teamBName}</div>
-                            <div style={{ fontSize: '28px', fontWeight: 900, marginTop: '8px', color: 'var(--color-cricket-green)' }}>{m.runsB}/{m.wicketsB}</div>
+                            <div style={{ fontSize: '16px', fontWeight: 900 }}>{m.teamBName}</div>
+                            <div style={{ fontSize: '24px', fontWeight: 900, marginTop: '4px', color: 'var(--color-cricket-green)' }}>{m.runsB}/{m.wicketsB}</div>
                             <div style={{ fontSize: '12px', fontWeight: 700, color: '#999' }}>{m.oversB} OVERS</div>
                          </div>
                       </div>
@@ -206,14 +206,14 @@ const TournamentDetails = () => {
               <h2 style={{ fontSize: '20px', fontWeight: 900 }}>Series Participants</h2>
               <button className="shopify-btn-primary" onClick={() => setShowTeamModal(true)}><UserPlus size={18} /> Tag Team</button>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px' }}>
+            <div className="card-grid">
               {teams.map(t => (
-                <div key={t.id} className="shopify-card card-interactive" style={{ padding: '24px', textAlign: 'center', marginBottom: 0 }}>
-                   <div style={{ width: '64px', height: '64px', background: '#f8f9fa', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-                      <Users size={32} color="var(--color-cricket-green)" />
+                <div key={t.id} className="shopify-card card-interactive" style={{ padding: '20px', textAlign: 'center', marginBottom: 0 }}>
+                   <div style={{ width: '56px', height: '56px', background: '#f8f9fa', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px' }}>
+                      <Users size={28} color="var(--color-cricket-green)" />
                    </div>
-                   <div style={{ fontWeight: 900, fontSize: '18px' }}>{t.name}</div>
-                   <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px', paddingTop: '20px', borderTop: '1.5px solid #f0f0f0' }}>
+                   <div style={{ fontWeight: 900, fontSize: '16px' }}>{t.name}</div>
+                   <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: '16px', paddingTop: '16px', borderTop: '1.5px solid #f0f0f0' }}>
                       <div>
                         <div style={{ fontWeight: 900 }}>{t.points || 0}</div>
                         <div style={{ fontSize: '10px', fontWeight: 800, color: '#999' }}>POINTS</div>

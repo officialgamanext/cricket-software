@@ -94,7 +94,7 @@ const Tournaments = () => {
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '28px' }}>
+      <div className="card-grid">
         {loading ? (
           <div style={{ textAlign: 'center', padding: '60px', gridColumn: '1/-1' }}>Loading series list...</div>
         ) : tournaments.length === 0 ? (

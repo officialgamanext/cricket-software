@@ -102,16 +102,16 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px' }}>
+      <div className="dashboard-grid">
         {/* RECENT ACTIVITY */}
         <div className="shopify-card">
-          <div style={{ padding: '20px', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ padding: '20px', borderBottom: '1.5px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '8px' }}>
               <History size={18} /> Tournament Rankings
             </h3>
-            <button className="shopify-btn-secondary" style={{ padding: '4px 12px', fontSize: '12px' }}>View All</button>
+            <button className="shopify-btn-secondary" style={{ padding: '4px 12px', fontSize: '11px' }}>View All</button>
           </div>
-          <div style={{ padding: '0' }}>
+          <div style={{ overflowX: 'auto' }}>
             <table className="shopify-table">
                <thead>
                  <tr>
@@ -123,14 +123,14 @@ const Dashboard = () => {
                  </tr>
                </thead>
                <tbody>
-                  <tr style={{ cursor: 'pointer' }}>
+                  <tr>
                     <td><div style={{ fontWeight: 700 }}>Mumbai Indians</div></td>
                     <td>5</td>
                     <td>4</td>
                     <td><span style={{ fontWeight: 800 }}>8</span></td>
                     <td style={{ color: 'var(--color-cricket-green)', fontWeight: 700 }}>+1.420</td>
                   </tr>
-                  <tr style={{ cursor: 'pointer' }}>
+                  <tr>
                     <td><div style={{ fontWeight: 700 }}>Chennai Super Kings</div></td>
                     <td>5</td>
                     <td>3</td>
@@ -143,18 +143,18 @@ const Dashboard = () => {
         </div>
 
         {/* QUICK STATS */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          <div className="shopify-card" style={{ padding: '24px', background: 'var(--color-pitch-black)', color: 'white', marginBottom: 0 }}>
-            <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '12px', fontWeight: 700, marginBottom: '8px', textTransform: 'uppercase' }}>Total Tournaments</div>
-            <div style={{ fontSize: '36px', fontWeight: 800 }}>{stats.tournaments}</div>
+        <div className="stats-column">
+          <div className="shopify-card stat-card" style={{ background: 'var(--color-pitch-black)', color: 'white' }}>
+            <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '11px', fontWeight: 700, marginBottom: '8px', textTransform: 'uppercase' }}>Total Tournaments</div>
+            <div style={{ fontSize: '32px', fontWeight: 900 }}>{stats.tournaments}</div>
             <div style={{ marginTop: '12px', color: 'var(--color-cricket-green)', fontSize: '13px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
               <TrendingUp size={16} /> +2 this month
             </div>
           </div>
           
-          <div className="shopify-card" style={{ padding: '24px', background: 'var(--color-cricket-green)', color: 'white', marginBottom: 0 }}>
-            <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '12px', fontWeight: 700, marginBottom: '8px', textTransform: 'uppercase' }}>Registered Teams</div>
-            <div style={{ fontSize: '36px', fontWeight: 800 }}>{stats.teams}</div>
+          <div className="shopify-card stat-card" style={{ background: 'var(--color-cricket-green)', color: 'white' }}>
+            <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '11px', fontWeight: 700, marginBottom: '8px', textTransform: 'uppercase' }}>Registered Teams</div>
+            <div style={{ fontSize: '32px', fontWeight: 900 }}>{stats.teams}</div>
             <div style={{ marginTop: '12px', color: 'white', fontSize: '13px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
               <TrendingUp size={16} /> Fully Syncing
             </div>

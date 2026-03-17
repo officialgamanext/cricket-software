@@ -66,25 +66,25 @@ const MatchDetails = () => {
               </span>
            </div>
 
-           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '80px' }}>
+           <div className="scoreboard-container">
               <div style={{ flex: 1, textAlign: 'right' }}>
-                <div style={{ fontSize: '12px', fontWeight: 900, color: 'rgba(255,255,255,0.4)', letterSpacing: '2px', marginBottom: '8px' }}>TEAM A</div>
-                <div style={{ fontSize: '32px', fontWeight: 900 }}>{match.teamAName}</div>
-                <div style={{ fontSize: '56px', fontWeight: 900, color: 'var(--color-cricket-green)', marginTop: '12px' }}>
-                  {match.runsA}/{match.wicketsA}
+                <div style={{ fontSize: '11px', fontWeight: 900, color: 'rgba(255,255,255,0.4)', letterSpacing: '2px', marginBottom: '8px' }}>TEAM A</div>
+                <div style={{ fontSize: '24px', fontWeight: 900 }}>{match.teamAName}</div>
+                <div style={{ fontSize: '48px', fontWeight: 900, color: 'var(--color-cricket-green)', marginTop: '8px' }}>
+                   {match.runsA}/{match.wicketsA}
                 </div>
-                <div style={{ fontSize: '18px', fontWeight: 700, color: 'rgba(255,255,255,0.6)' }}>{match.oversA} OVERS</div>
+                <div style={{ fontSize: '14px', fontWeight: 700, opacity: 0.6 }}>{match.oversA} OVERS</div>
               </div>
               
-              <div style={{ width: '64px', height: '64px', background: 'rgba(255,255,255,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, color: 'rgba(255,255,255,0.3)', fontSize: '20px' }}>VS</div>
+              <div className="vs-marker" style={{ width: '56px', height: '56px', background: 'rgba(255,255,255,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, color: 'rgba(255,255,255,0.3)', fontSize: '18px', flexShrink: 0 }}>VS</div>
               
               <div style={{ flex: 1, textAlign: 'left' }}>
-                <div style={{ fontSize: '12px', fontWeight: 900, color: 'rgba(255,255,255,0.4)', letterSpacing: '2px', marginBottom: '8px' }}>TEAM B</div>
-                <div style={{ fontSize: '32px', fontWeight: 900 }}>{match.teamBName}</div>
-                <div style={{ fontSize: '56px', fontWeight: 900, color: 'var(--color-cricket-green)', marginTop: '12px' }}>
-                  {match.runsB}/{match.wicketsB}
+                <div style={{ fontSize: '11px', fontWeight: 900, color: 'rgba(255,255,255,0.4)', letterSpacing: '2px', marginBottom: '8px' }}>TEAM B</div>
+                <div style={{ fontSize: '24px', fontWeight: 900 }}>{match.teamBName}</div>
+                <div style={{ fontSize: '48px', fontWeight: 900, color: 'var(--color-cricket-green)', marginTop: '8px' }}>
+                   {match.runsB}/{match.wicketsB}
                 </div>
-                <div style={{ fontSize: '18px', fontWeight: 700, color: 'rgba(255,255,255,0.6)' }}>{match.oversB} OVERS</div>
+                <div style={{ fontSize: '14px', fontWeight: 700, opacity: 0.6 }}>{match.oversB} OVERS</div>
               </div>
            </div>
 
@@ -107,7 +107,7 @@ const MatchDetails = () => {
         ))}
       </div>
       
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '32px', animation: 'fadeIn 0.5s ease-out' }}>
+      <div className="responsive-split" style={{ animation: 'fadeIn 0.5s ease-out' }}>
          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div className="shopify-card" style={{ padding: '32px' }}>
                <h3 style={{ fontSize: '18px', fontWeight: 900, marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -117,7 +117,7 @@ const MatchDetails = () => {
                   This match is part of the professional regional circuit. {match.status === 'Live' ? 'The game is currently active and scores are being synced in real-time.' : (match.status === 'Scheduled' ? 'The match is currently scheduled and yet to start.' : 'The match has concluded.')} 
                </div>
                
-               <div style={{ marginTop: '32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+               <div style={{ marginTop: '32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
                   <div style={{ padding: '20px', background: '#f8f9fa', borderRadius: '16px' }}>
                      <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#999', marginBottom: '16px' }}>BATTING LEADERS</h4>
                      <div style={{ color: '#bbb', fontSize: '13px', fontWeight: 600 }}>No data recorded for this session yet.</div>
